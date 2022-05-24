@@ -38,10 +38,11 @@ public class Show_Logs extends javax.swing.JFrame {
         try {
             dt = (DefaultTableModel) jTable1.getModel();
             dt.setRowCount(0);
-            rs = Connexion.Seconnecter().createStatement().executeQuery("select operation , TO_CHAR(date_operation,'DD-MM-YYYY') as date_operation , TO_CHAR(date_operation,'HH:MI:SS') as heure_operation , nom_personne , email_personne , admin from trace join personnelle on who = id_personne");
+            rs = Connexion.Seconnecter().createStatement().executeQuery("select upper(operation) , TO_CHAR(date_operation,'DD-MM-YYYY') as date_operation , TO_CHAR(date_operation,'HH:MI:SS') as heure_operation ,"
+                    + "upper(tableau), nom_personne , email_personne , upper(admin) from trace natural join personnelle ");
             if (rs.isBeforeFirst()) {
                 while (rs.next()) {
-                    dt.addRow(new Object[]{rs.getObject(1), rs.getObject(2), rs.getObject(3), rs.getObject(4) , rs.getObject(5) , rs.getObject(6)});
+                    dt.addRow(new Object[]{rs.getObject(1), rs.getObject(2), rs.getObject(3), rs.getObject(4) , rs.getObject(5) , rs.getObject(6) , rs.getObject(7)});
                 }
             } else {
                 System.out.println("NO DATA FOUND");
@@ -82,11 +83,11 @@ public class Show_Logs extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Operation", "Operation Date", "Operation Time", "User's Last Name", "User's E-Mail", "Is Admin"
+                "Operation", "Operation Date", "Operation Time", "Which Table", "User's Last Name", "User's E-Mail", "Is Admin"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -102,6 +103,7 @@ public class Show_Logs extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(3).setResizable(false);
             jTable1.getColumnModel().getColumn(4).setResizable(false);
             jTable1.getColumnModel().getColumn(5).setResizable(false);
+            jTable1.getColumnModel().getColumn(6).setResizable(false);
         }
 
         jMenu1.setText("OPTIONS");
@@ -129,8 +131,8 @@ public class Show_Logs extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(156, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 779, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

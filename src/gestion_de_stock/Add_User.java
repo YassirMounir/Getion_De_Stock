@@ -30,7 +30,6 @@ public class Add_User extends javax.swing.JFrame {
         setTitle("ADD NEW USER");
         setResizable(false);
         setLocationRelativeTo(null);
-        jLabel8.setText("ADD USER");
     }
 
     private Add_User() {
@@ -140,6 +139,7 @@ public class Add_User extends javax.swing.JFrame {
         });
 
         jLabel8.setFont(new java.awt.Font("Dubai", 3, 18)); // NOI18N
+        jLabel8.setText("ADD USER");
 
         jLabel9.setText("PHONE NUMBER PATTERN         XXX-XXX-XXX    ");
 
@@ -295,13 +295,13 @@ public class Add_User extends javax.swing.JFrame {
                             Admin_Dashboard admn = new Admin_Dashboard(PrimaryKey_P);
                             admn.setVisible(true);
                             //ADD INTO TRACE TABLE THE UPDATE/INSERT ON EACH TABLE
-//                            R = Connexion.Seconnecter().createStatement().executeUpdate("insert into trace values(sysdate,'UPDATING'," + PrimaryKey_P + ")");
+                            R = Connexion.Seconnecter().createStatement().executeUpdate("insert into trace values(sysdate,'INSERTING','ARTICLE'," + PrimaryKey_P + ")");
                         } else {
                             JOptionPane.showMessageDialog(null, "UPDATE ERROR", "ERROR", JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
                         if (passwordcheck.isEmpty()) {
-                            JOptionPane.showMessageDialog(null, "ENTER YOUR PASSWORDS. TRY AGAIN", "PASSWORD ERROR", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "ENTER YOUR PASSWORD. TRY AGAIN", "PASSWORD ERROR", JOptionPane.ERROR_MESSAGE);
                         } else {
                             JOptionPane.showMessageDialog(null, "PASSWORDS DO NOT MATCH. TRY AGAIN", "PASSWORD ERROR", JOptionPane.ERROR_MESSAGE);
                         }
