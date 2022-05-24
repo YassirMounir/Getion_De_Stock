@@ -139,7 +139,7 @@ public class Add_User extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Jokerman", 3, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Dubai", 3, 18)); // NOI18N
 
         jLabel9.setText("PHONE NUMBER PATTERN         XXX-XXX-XXX    ");
 

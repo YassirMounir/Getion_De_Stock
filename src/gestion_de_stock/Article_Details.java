@@ -284,14 +284,20 @@ public class Article_Details extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if (JOptionPane.showConfirmDialog(null, "SURE ? YOU WANT TO EXIT WITHOUT SAVE?", "EXIT CONFIRMATION", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
             try {
-                setVisible(false);
-                String isAdmin = (String) rs.getObject(2);
-                if (isAdmin.matches("true")) {
-                    Admin_Dashboard admn = new Admin_Dashboard(PrimaryKey_P);
-                    admn.setVisible(true);
+                rs = Connexion.Seconnecter().createStatement().executeQuery("select password , admin from personnelle where id_personne = " + PrimaryKey_P);
+                if (!rs.isBeforeFirst()) {
+                    System.out.println("NO DATA FOUND");
                 } else {
-                    Non_Admin_Dashboard nadmn = new Non_Admin_Dashboard(PrimaryKey_P);
-                    nadmn.setVisible(true);
+                    rs.next();
+                    setVisible(false);
+                    String isAdmin = (String) rs.getObject(2);
+                    if (isAdmin.matches("true")) {
+                        Admin_Dashboard admn = new Admin_Dashboard(PrimaryKey_P);
+                        admn.setVisible(true);
+                    } else {
+                        Non_Admin_Dashboard nadmn = new Non_Admin_Dashboard(PrimaryKey_P);
+                        nadmn.setVisible(true);
+                    }
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(Article_Details.class.getName()).log(Level.SEVERE, null, ex);
