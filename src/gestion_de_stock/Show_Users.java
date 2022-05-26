@@ -251,7 +251,7 @@ public class Show_Users extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         try {
-            String passwordcheck = JOptionPane.showInputDialog(null, "Enter Your Password In Order To Delete User :");
+            String passwordcheck = JOptionPane.showInputDialog(null,"Enter Your Password In Order To Delete User :");
             rs = Connexion.Seconnecter().createStatement().executeQuery("select password from personnelle where id_personne = " + admnPKey);
             if (!rs.isBeforeFirst()) {
                 System.out.println("NO DATA FOUND");

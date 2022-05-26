@@ -255,10 +255,9 @@ public class Non_Admin_Dashboard extends javax.swing.JFrame {
         try {
             dt = (DefaultTableModel) jTable1.getModel();
             dt.setRowCount(0);
-            rs = Connexion.Seconnecter().createStatement().executeQuery("select * from article ");
+            rs = Connexion.Seconnecter().createStatement().executeQuery("select * from article order by code_art");
             if (!rs.isBeforeFirst()) {
                 System.out.println("NO DATA FOUND");
-//                jLabel2.setIcon(new ImageIcon(getClass().getResource("ezgif.com-gif-maker.png")));
             } else {
                 while (rs.next()) {
                     dt.addRow(new Object[]{rs.getObject(1), rs.getObject(2), rs.getObject(3), rs.getObject(4), rs.getObject(5), rs.getObject(6)});

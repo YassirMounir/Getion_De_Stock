@@ -106,7 +106,7 @@ public class Article_Details extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Jokerman", 3, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
 
         jButton1.setText("SAVE & EXIT");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -318,15 +318,14 @@ public class Article_Details extends javax.swing.JFrame {
                     if (R != 0) {
                         JOptionPane.showMessageDialog(null, "ARTICLE HAS BEEN DELETED SUCCESSFULLY", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
                         setVisible(false);
+                        rs = Connexion.Seconnecter().createStatement().executeQuery("insert into trace values(sysdate,'DELETING','ARTICLE'" + PrimaryKey_P + ")");
                         String isAdmin = (String) rs.getObject(2);
                         if (isAdmin.matches("true")) {
                             Admin_Dashboard admn = new Admin_Dashboard(PrimaryKey_P);
                             admn.setVisible(true);
-                            rs = Connexion.Seconnecter().createStatement().executeQuery("insert into trace values(sysdate,'DELETING'," + PrimaryKey_P + ")");
                         } else {
                             Non_Admin_Dashboard nadmn = new Non_Admin_Dashboard(PrimaryKey_P);
                             nadmn.setVisible(true);
-                            rs = Connexion.Seconnecter().createStatement().executeQuery("insert into trace values(sysdate,'DELETING'," + PrimaryKey_P + ")");
                         }
                     } else {
                         JOptionPane.showMessageDialog(null, "DELETE ERROR", "ERROR", JOptionPane.ERROR_MESSAGE);

@@ -187,7 +187,7 @@
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Jokerman" size="24" style="3"/>
+              <Font name="Dubai" size="24" style="1"/>
             </Property>
           </Properties>
         </Component>
