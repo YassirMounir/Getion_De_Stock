@@ -39,7 +39,7 @@ public class Show_Users extends javax.swing.JFrame {
         try {
             dt = (DefaultTableModel) jTable1.getModel();
             dt.setRowCount(0);
-            rs = Connexion.Seconnecter().createStatement().executeQuery("select nom_personne , prenom_personne , email_personne , admin from personnelle "
+            rs = Connexion.Seconnecter().createStatement().executeQuery("select nom_personne , prenom_personne , email_personne , upper(admin) from personnelle "
                     + "where id_personne != "+admnPKey+"");
             if (rs.isBeforeFirst()) {
                 while (rs.next()) {
@@ -214,7 +214,7 @@ public class Show_Users extends javax.swing.JFrame {
         try {
             dt = (DefaultTableModel) jTable1.getModel();
             dt.setRowCount(0);
-            rs = Connexion.Seconnecter().createStatement().executeQuery("select nom_personne , prenom_personne , email_personne , admin from personnelle where UPPER(admin) = 'TRUE'");
+            rs = Connexion.Seconnecter().createStatement().executeQuery("select nom_personne , prenom_personne , email_personne , upper(admin) from personnelle where UPPER(admin) = 'TRUE'");
             if (rs.isBeforeFirst()) {
                 while (rs.next()) {
                     dt.addRow(new Object[]{rs.getObject(1), rs.getObject(2), rs.getObject(3), rs.getObject(4)});
@@ -231,7 +231,7 @@ public class Show_Users extends javax.swing.JFrame {
         try {
             dt = (DefaultTableModel) jTable1.getModel();
             dt.setRowCount(0);
-            rs = Connexion.Seconnecter().createStatement().executeQuery("select nom_personne , prenom_personne , email_personne , admin from personnelle where upper(admin) = 'FALSE'");
+            rs = Connexion.Seconnecter().createStatement().executeQuery("select nom_personne , prenom_personne , email_personne , upper(admin) from personnelle where upper(admin) = 'FALSE'");
             if (rs.isBeforeFirst()) {
                 while (rs.next()) {
                     dt.addRow(new Object[]{rs.getObject(1), rs.getObject(2), rs.getObject(3), rs.getObject(4)});
@@ -265,6 +265,7 @@ public class Show_Users extends javax.swing.JFrame {
                     int R = Connexion.Seconnecter().createStatement().executeUpdate(req);
                     if (R != 0) {
                         JOptionPane.showMessageDialog(null, "USER SUCCESSFULLY DELETED", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
+                        R = Connexion.Seconnecter().createStatement().executeUpdate("insert into trace values (sysdate , 'DELETING' , 'PERSONNELLE' , "+admnPKey+")");
                         Fill_Table();
                     }
                 } else {

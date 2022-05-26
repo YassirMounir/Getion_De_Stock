@@ -22,7 +22,7 @@ public class Account_Details extends javax.swing.JFrame {
      * Creates new form Account_Details
      */
     BigDecimal Primary_Key;
-    ResultSet profile;
+    ResultSet profile, rs;
     String OLDPassword;
 
     public Account_Details(BigDecimal PKey) {
@@ -216,6 +216,7 @@ public class Account_Details extends javax.swing.JFrame {
                         int R = Connexion.Seconnecter().createStatement().executeUpdate(req);
                         if (R != 0) {
                             JOptionPane.showMessageDialog(null, "YOURE PROFILE HAS BEEN UPDATED SUCCESSFULLY", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
+                            R = Connexion.Seconnecter().createStatement().executeUpdate("insert into trace values(sysdate,'UPDATING','PERSONNELLE'," + Primary_Key + ")");
                             setVisible(false);
                             String isAdmin = (String) profile.getObject(7);
                             if (isAdmin.matches("true")) {

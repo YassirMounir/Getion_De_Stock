@@ -295,9 +295,9 @@ public class Add_User extends javax.swing.JFrame {
                             Admin_Dashboard admn = new Admin_Dashboard(PrimaryKey_P);
                             admn.setVisible(true);
                             //ADD INTO TRACE TABLE THE UPDATE/INSERT ON EACH TABLE
-                            R = Connexion.Seconnecter().createStatement().executeUpdate("insert into trace values(sysdate,'INSERTING','ARTICLE'," + PrimaryKey_P + ")");
+                            R = Connexion.Seconnecter().createStatement().executeUpdate("insert into trace values(sysdate,'INSERTING','PERSONNELLE'," + PrimaryKey_P + ")");
                         } else {
-                            JOptionPane.showMessageDialog(null, "UPDATE ERROR", "ERROR", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "INSERT ERROR", "ERROR", JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
                         if (passwordcheck.isEmpty()) {
@@ -320,6 +320,8 @@ public class Add_User extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (JOptionPane.showConfirmDialog(null, "SURE ? YOU WANT TO EXIT WITHOUT SAVE?", "EXIT CONFIRMATION", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
             setVisible(false);
+            Admin_Dashboard adm = new Admin_Dashboard(PrimaryKey_P);
+            adm.setVisible(true);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

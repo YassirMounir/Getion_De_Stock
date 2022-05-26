@@ -38,8 +38,8 @@ public class Show_Logs extends javax.swing.JFrame {
         try {
             dt = (DefaultTableModel) jTable1.getModel();
             dt.setRowCount(0);
-            rs = Connexion.Seconnecter().createStatement().executeQuery("select upper(operation) , TO_CHAR(date_operation,'DD-MM-YYYY') as date_operation , TO_CHAR(date_operation,'HH:MI:SS') as heure_operation ,"
-                    + "upper(tableau), nom_personne , email_personne , upper(admin) from trace natural join personnelle ");
+            rs = Connexion.Seconnecter().createStatement().executeQuery("select upper(operation) , TO_CHAR(date_operation,'DD-MM-YYYY') as date_operation , TO_CHAR(date_operation,'HH:MI:SS') as heure_operation ,upper(tableau), upper(nom_personne) , email_personne , upper(admin) from trace "
+                    + "natural join personnelle order by date_operation, heure_operation ");
             if (rs.isBeforeFirst()) {
                 while (rs.next()) {
                     dt.addRow(new Object[]{rs.getObject(1), rs.getObject(2), rs.getObject(3), rs.getObject(4) , rs.getObject(5) , rs.getObject(6) , rs.getObject(7)});
@@ -75,7 +75,7 @@ public class Show_Logs extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jLabel1.setFont(new java.awt.Font("Jokerman", 3, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
         jLabel1.setText("WELCOME DEAR ADMIN");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -83,7 +83,7 @@ public class Show_Logs extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Operation", "Operation Date", "Operation Time", "Which Table", "User's Last Name", "User's E-Mail", "Is Admin"
+                "Operation", "Operation Date", "Operation Time", "Which Table", "User's Last Name", "User's E-Mail", "iS Admin"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -96,15 +96,6 @@ public class Show_Logs extends javax.swing.JFrame {
         });
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
-            jTable1.getColumnModel().getColumn(6).setResizable(false);
-        }
 
         jMenu1.setText("OPTIONS");
 
@@ -131,8 +122,8 @@ public class Show_Logs extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 779, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 877, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

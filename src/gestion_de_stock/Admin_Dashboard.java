@@ -52,7 +52,7 @@ public class Admin_Dashboard extends javax.swing.JFrame {
         try {
             dt = (DefaultTableModel) jTable1.getModel();
             dt.setRowCount(0);
-            rs = Connexion.Seconnecter().createStatement().executeQuery("select * from article ");
+            rs = Connexion.Seconnecter().createStatement().executeQuery("select * from article order by code_art");
             if (!rs.isBeforeFirst()) {
                 System.out.println("NO DATA FOUND");
             } else {

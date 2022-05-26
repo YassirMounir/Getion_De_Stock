@@ -252,16 +252,15 @@ public class Article_Details extends javax.swing.JFrame {
                         int R = Connexion.Seconnecter().createStatement().executeUpdate(req);
                         if (R != 0) {
                             JOptionPane.showMessageDialog(null, "ARTICLE HAS BEEN UPDATED SUCCESSFULLY", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
+                            R = Connexion.Seconnecter().createStatement().executeUpdate("insert into trace values(sysdate,'UPDATING','ARTICLE'," + PrimaryKey_P + ")");
                             setVisible(false);
                             String isAdmin = (String) rs.getObject(2);
                             if (isAdmin.matches("true")) {
                                 Admin_Dashboard admn = new Admin_Dashboard(PrimaryKey_P);
                                 admn.setVisible(true);
-                                R = Connexion.Seconnecter().createStatement().executeUpdate("insert into trace values(sysdate,'UPDATING'," + PrimaryKey_P + ")");
                             } else {
                                 Non_Admin_Dashboard nadmn = new Non_Admin_Dashboard(PrimaryKey_P);
                                 nadmn.setVisible(true);
-                                R = Connexion.Seconnecter().createStatement().executeUpdate("insert into trace values(sysdate,'UPDATING'," + PrimaryKey_P + ")");
                             }
                         } else {
                             JOptionPane.showMessageDialog(null, "UPDATE ERROR", "ERROR", JOptionPane.ERROR_MESSAGE);
